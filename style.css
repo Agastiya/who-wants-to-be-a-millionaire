@@ -1,0 +1,97 @@
+body
+{
+    background-color: #3498db !important;
+}
+
+.hide
+{
+    display: none !important;
+}
+
+.container{
+    margin-top: 100px;
+}
+
+.container-price,.container-question
+{
+    width: 40%;
+
+}
+
+.option {
+    display : block;
+}
+
+.option > input{ 
+    visibility: hidden;
+    position: absolute;
+}
+
+.option > input + div{ 
+    border: 1px solid green;
+    margin:10px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.option > input:checked + div{ 
+    border: 1px solid green;
+    margin:10px;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    background-color: green;
+    color: white;
+    font-weight: bold;
+}
+
+.option-price-list
+{
+    border: 1px solid #2980b9;
+    margin:10px;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.current
+{
+    background-color: #2980b9;
+    color: white;
+}
+
+.option > .correct + div
+{
+    color: red;
+}
+
+
+#exitbtn
+{
+    margin-right:10px;
+}
+
+
+
+.timerdiv h5
+{
+    font-size: 15px;
+    margin-top: 10px;
+    float: right;
+}
+
+.totalSoal,
+.BtnNextTotalSoal
+{
+    padding:10px;
+}
+
+.totalSoal
+{
+    padding-top:18px;
+}
+
+.BtnNextTotalSoal button
+{
+    float: right;
+}
