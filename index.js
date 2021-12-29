@@ -6,8 +6,11 @@ let url = urlEasy;
 
 
 //Element
+let startQuizContainer = document.querySelector('.startQuizContainer')
+let startQuiz = document.querySelector('#start')
 let questionText = document.querySelector('.question-text')
 let answersList = document.querySelector('.answers-list')
+let containerRules = document.querySelector('.Container-rules')
 let containterQuestion = document.querySelector('.container-question')
 let containterFinish = document.querySelector('.container-finish')
 let containerPrice = document.querySelector('.container-price')
@@ -15,12 +18,12 @@ let difficulty = document.querySelector('.difficulty')
 let currentQuestion = document.querySelector('.currentQuestion')
 let timer = document.querySelector('.timer')
 let LiPriceList = document.querySelectorAll('.LiPriceList div.option-price-list')
-let CurrentPriceText = document.querySelector('.CurrentPriceText')
 let LastPrice = document.querySelector('.LastPrice')
+let continuebtnrules = document.querySelector('.continuebtnrules')
+let containerquestandprice = document.querySelector('.containerquestandprice')
 
 let checkAnswerFill = false
 let checkCorrectAnswer = false
-
 
 //variable 
 let lengthQuestion = 0
@@ -28,13 +31,25 @@ let timequestionEasy = 60
 let timequestionMedium = 90
 let timequestionHard = 120
 let timequestion = timequestionEasy
-let timerId = setInterval(countdown, 1000)
+let timerId;
 
 
-getQuestion(0,url)
-difficulty.innerText = "EASY"
+startQuiz.addEventListener('click',function(){
+    startQuizContainer.classList.add('hide')
+    containerRules.classList.remove('hide')
+})
 
-function getQuestion(index,url) {
+continuebtnrules.addEventListener('click',function(){
+    containerRules.classList.add('hide')
+    containerquestandprice.classList.remove('hide')
+    getQuestion(0, url)
+    timerId = setInterval(countdown, 1000)
+    difficulty.innerText = "EASY"
+})
+
+
+function getQuestion(index,url)
+{
     fetch(url)
     .then(response => response.json())
     .then(response => {
@@ -111,11 +126,9 @@ nextQuestion.addEventListener('click', function () {
                 const currentprice = li.classList.contains("current")
                 if (currentprice == true) {
                     
-                    CurrentPriceText.innerText = li.firstChild.nextSibling.innerText
-                    
                     const checkpoint = li.classList.contains("checkPoint")
                     if (checkpoint == true)
-                        LastPrice.innerHTML = li.firstChild.nextSibling.innerText
+                        LastPrice.innerHTML = "You Get "+li.firstChild.nextSibling.innerText
                     
                     li.classList.remove('current')
                     let iddataprice = li.getAttribute('id')
@@ -179,13 +192,15 @@ function resetQuestion()
     getQuestion(indexQuestion++, url)
 }
 
-function closeall() {
+function closeall() 
+{
     containterFinish.classList.remove('hide')
     containterQuestion.classList.add('hide')
     containerPrice.classList.add('hide')
 }
 
-function shuffle(array) {
+function shuffle(array) 
+{
     let currentIndex = array.length, randomIndex
     while (currentIndex != 0) {
         randomIndex = Math.floor(Math.random() * currentIndex)
